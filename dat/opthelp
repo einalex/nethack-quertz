@@ -32,6 +32,7 @@ pushweapon     when wielding a new weapon, put your previously
 quiver_fired   when using the f (fire) command and no ammunition
                is quivered, prompt for ammunition to quiver, then 
                fire it.                                           [TRUE]
+qwertz_layout  swap x and y keys for movement and zapping only    [FALSE]
 rawio          allow the use of raw I/O                           [FALSE]
 rest_on_space  count the space bar as a rest character            [FALSE]
 safe_pet       prevent you from (knowingly) attacking your pet(s) [TRUE]

@@ -165,6 +165,7 @@ struct instance_flags {
 	boolean  UTF8graphics;	/* use UTF-8 characters */
 	unsigned msg_history;	/* hint: # of top lines to save */
 	boolean  num_pad;	/* use numbers for movement commands */
+	boolean  qwertz_layout; /*swap y/z for zapping and moving purposes */
 	boolean  news;		/* print news */
 	boolean  window_inited; /* true if init_nhwindows() completed */
 	boolean  vision_inited; /* true if vision is ready */

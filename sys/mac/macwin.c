@@ -1904,7 +1904,7 @@ macCursorTerm (EventRecord *theEvent, WindowPtr theWindow, RgnHandle mouseRgn) {
 		Point where = theEvent->where;
 
 		GlobalToLocal (&where);
-		dir_bas = iflags.num_pad ? (char *) ndir : (char *) sdir;
+		dir_bas = iflags.num_pad ? (char *) ndir : (iflags.qwertz_layout ? (char *) sdir[1] : (char *) sdir[0]);
 		dir = strchr (dir_bas, *click_to_cmd (where.h / nhw->char_width + 1 ,
 							where.v / nhw->row_height, CLICK_1));
 	}

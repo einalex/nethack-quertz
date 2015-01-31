@@ -583,7 +583,7 @@
                monster  instead.   Only  these  one-step  movement commands
                cause  you  to  fight  monsters;  the  others  (below)   are
                ``safe.''
-
+               (Use z instead of y if qwertz_layout is set.)
 
 
 
@@ -803,9 +803,11 @@
                as the various deities in your game.
 
           z    Zap a wand.  To aim at yourself, use `.' for the  direction.
+               (Use y instead of z if qwertz_layout is set.)
 
           Z    Zap  (cast)  a  spell.  To cast at yourself, use `.' for the
                direction.
+               (Use Y instead of Z if qwertz_layout is set.)
 
           ^Z   Suspend the game (UNIX(R) versions with job control only).
 

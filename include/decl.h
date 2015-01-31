@@ -214,7 +214,7 @@ E const char *nomovemsg;
 E const char nul[];
 E char lock[];
 
-E const char sdir[], ndir[];
+E const char sdir[2][11], ndir[];
 E const schar xdir[], ydir[], zdir[];
 E char misc_cmds[];
 

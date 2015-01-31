@@ -2194,8 +2194,13 @@ init_bind_list(void)
 #ifdef STICKY_COMMAND
 	bind_key(M('y'), "sticky" );
 #endif /* STICKY_COMMAND */
-	bind_key('z',    "zap" );
-	bind_key('Z',    "cast" );
+	if (iflags.qwertz_layout) {
+		bind_key('y',    "zap" );
+		bind_key('Y',    "cast" );
+	} else {
+		bind_key('z',    "zap" );
+		bind_key('Z',    "cast" );
+	}
 	bind_key('<',    "up" );
 	bind_key('>',    "down" );
 	bind_key('/',    "whatis" );
@@ -2303,7 +2308,8 @@ dokeylist(void)
 
 	/* directional keys */
 	if (iflags.num_pad) dir_keys = ndir;
-	else dir_keys = sdir;
+	else if (iflags.qwertz_layout) dir_keys = sdir[1];
+	else dir_keys = sdir[0];
 	putstr(datawin, 0, "Directional keys:");
 	{
 	  Sprintf(buf, "  %c %c %c", dir_keys[1], dir_keys[2], dir_keys[3]);
@@ -3046,7 +3052,9 @@ char sym;
 {
 	register const char *dp;
 	register const char *sdp;
-	if(iflags.num_pad) sdp = ndir; else sdp = sdir;	/* DICE workaround */
+	if(iflags.num_pad) sdp = ndir;	/* DICE workaround */
+	else if (iflags.qwertz_layout) sdp = sdir[1];
+	else sdp = sdir[0];
 
 	u.dz = 0;
 	if(!(dp = index(sdp, sym))) return 0;
@@ -3290,7 +3298,7 @@ click_to_cmd(x, y, mod)
         dir = xytod(x, y);
 
 	if (!m_at(u.ux+x, u.uy+y) && !test_move(u.ux, u.uy, x, y, TEST_MOVE)) {
-            cmd[1] = (iflags.num_pad ? ndir[dir] : sdir[dir]);
+            cmd[1] = (iflags.num_pad ? ndir[dir] : (iflags.qwertz_layout ? sdir[1][dir] : sdir[0][dir]));
             cmd[2] = 0;
             if (IS_DOOR(levl[u.ux+x][u.uy+y].typ)) {
                 /* slight assistance to the player: choose kick/open for them */
@@ -3331,10 +3339,10 @@ click_to_cmd(x, y, mod)
     /* move, attack, etc. */
     cmd[1] = 0;
     if(mod == CLICK_1) {
-	cmd[0] = (iflags.num_pad ? ndir[dir] : sdir[dir]);
+	cmd[0] = (iflags.num_pad ? ndir[dir] : (iflags.qwertz_layout ? sdir[1][dir] : sdir[0][dir]));
     } else {
 	cmd[0] = (iflags.num_pad ? M(ndir[dir]) :
-		(sdir[dir] - 'a' + 'A')); /* run command */
+		(iflags.qwertz_layout ? (sdir[1][dir] - 'a' + 'A') : (sdir[0][dir] - 'a' + 'A'))); /* run command */
     }
 
     return cmd;

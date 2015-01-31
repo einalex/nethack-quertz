@@ -3978,7 +3978,7 @@ void NetHackQtMainWindow::keyPressEvent(QKeyEvent* event)
 	event->key() >= Key_Left && event->key() <= Key_Down )
 	return;
 
-    const char* d = iflags.num_pad ? ndir : sdir; 
+    const char* d = iflags.num_pad ? ndir : (iflags.qwertz_layout ? sdir[1] : sdir[0]);
     switch (event->key()) {
      case Key_Up:
 	if ( dirkey == d[0] )

@@ -446,7 +446,8 @@ Go one step in the direction indicated (see Figure 2).  If you sense
 or remember
 a monster there, you will fight the monster instead.  Only these
 one-step movement commands cause you to fight monsters; the others
-(below) are ``safe.''
+(below) are ``safe.'' (Use \fBz\fP instead of \fBy\fP if
+\fBqwertz_layout\fP is set.)
 .sd
 .TS S
 center;
@@ -2069,6 +2070,9 @@ Prompt for confirmation before praying (default on).
 .lp pushweapon
 Using the `w' (wield) command when already wielding
 something pushes the old item into your alternate weapon slot (default off).
+.lp qwertz_layout
+This option can be used to swap the y and z keys for movement and zapping.
+This is useful for some keyboard layouts.
 .lp race
 Selects your race (for example, ``race:human'').  Default is random.
 Cannot be set with the `O' command.

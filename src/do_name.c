@@ -143,7 +143,9 @@ const char *goal;
     static const char pick_chars[] = ".,;:";
     const char *cp;
     const char *sdp;
-    if(iflags.num_pad) sdp = ndir; else sdp = sdir;	/* DICE workaround */
+    if(iflags.num_pad) sdp = ndir;	/* DICE workaround */
+    else if (iflags.qwertz_layout) sdp = sdir[1];
+	else sdp = sdir[0];
 
     if (flags.verbose) {
 	pline("(For instructions type a ?)");
@@ -186,7 +188,7 @@ const char *goal;
 		/* a normal movement letter or digit */
 		dx = xdir[i];
 		dy = ydir[i];
-	    } else if (sdir[i] == lowc((char)c)) {
+	    } else if (sdp[i] == lowc((char)c)) {
 		/* a shifted movement letter */
 		dx = 8 * xdir[i];
 		dy = 8 * ydir[i];
